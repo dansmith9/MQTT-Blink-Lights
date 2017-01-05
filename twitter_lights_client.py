@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 from blinkt import set_pixel, show, clear
 import time
-from random import randint
+from random import randint, choice
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -43,11 +43,11 @@ def on_message(client, userdata, msg):
 NODE="2"
 
 ## Set up variables for initial Blinkt display
-current_pattern="solid"
+current_pattern=choice(["solid","fade","dot","random"])
 
-r=109
-g=101
-b=158
+r=randint(0,255)
+g=randint(0,255)
+b=randint(0,255)
 
 ## Set up MQTT
 client = mqtt.Client()
